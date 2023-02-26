@@ -8,8 +8,10 @@ buttonCreate.addEventListener("click", () => {
   createBoxes(amount);
 });
 
-buttonDestroy.addEventListener("click", destroyBoxes());
 
+buttonDestroy.addEventListener('click', () => {
+  destroyBoxes();
+});
 
 
 function createBoxes(amount) {
@@ -21,8 +23,8 @@ function createBoxes(amount) {
 
     let newDiv = document.createElement("div");
     newDiv.textContent = i;
-    newDiv.style.width = `${30 + i*10}px`;
-    newDiv.style.height = `${30 + i*10}px`;
+    newDiv.style.width = `${20 + i*10}px`;
+    newDiv.style.height = `${20 + i*10}px`;
     newDiv.style.background = getRandomHexColor();
     res.push(newDiv);
 }
@@ -33,29 +35,15 @@ function createBoxes(amount) {
 }
 
 
-
 function destroyBoxes() {
-  paste.remove();
+  let boxes = document.querySelector('#boxes');
+  while (boxes.firstChild) {
+    boxes.removeChild(boxes.firstChild);
+  }
 }
 
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
-
-
-// Створи функцію createBoxes(amount), яка приймає один параметр - число. Функція створює стільки <div>, 
-// скільки вказано в amount і додає їх у div#boxes.
-// Розміри найпершого <div> - 30px на 30px.
-// Кожен елемент після першого повинен бути ширшим і вищим від попереднього на 10px.
-// Всі елементи повинні мати випадковий колір фону у форматі HEX. Використовуй готову функцію getRandomHexColor для отримання кольору.
-// function getRandomHexColor() {
-//   return `#${Math.floor(Math.random() * 16777215)
-//     .toString(16)
-//     .padStart(6, 0)}`;
-// }
-// Створи функцію destroyBoxes(), яка очищає вміст div#boxes, у такий спосіб видаляючи
-//  всі створені елементи.
-
-
 
